@@ -1,17 +1,24 @@
 # az
 % cloud
 #plateform/Azure #target/remote #cat/UTILS
+
+<!-- Basics command -->
+//test
+## Create ressource group
+
 az group create --name <MyResourceGroupName> --location <Location>
 
+## Show VM
 
-## Création de VM
+az vm show --name <vmName> --resource-group <resourceGroup> --query 'networkProfile.networkInterfaces[].id' --output tsv
 
-az vm create \
-  --resource-group $resourceGroup \
-  --name $vmName \
-  --image Ubuntu2204 \
-  --vnet-name $vnetName \
-  --subnet $subnetName \
-  --generate-ssh-keys \
-  --output json \
-  --verbose 
+## Create Vnet
+
+az network vnet create --name <vnetName> --resource-group <resourceGroup> --address-prefixes <vnetAddressPrefix> --subnet-name <subnetName> --subnet-prefixes <subnetAddressPrefix>
+
+## Create VM
+
+az vm create --resource-group <resourceGroup> --name <vmName> --image <OSName> --vnet-name <vnetName> --subnet <subnetName> --generate-ssh-keys --output json --verbose
+
+## 
+
